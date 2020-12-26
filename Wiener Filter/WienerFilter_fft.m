@@ -14,6 +14,8 @@ Yf = fft2(y);
 Hf = fft2(h,N,N);
 Pyf = abs(Yf).^2/N^2;
 
+
+
 % direct implementation of the regularized inverse filter, 
 % when alpha = 1, it is the Wiener filter
 % Gf = conj(Hf).*Pxf./(abs(Hf.^2).*Pxf+alpha*sigma^2);

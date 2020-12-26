@@ -30,5 +30,5 @@ Gf = iHf.*(Pyf-sigma^2)./(Pyf-(1-alpha)*sigma^2);
 % max(max(abs(Gf).^2)) % should be equal to gamma^2
 % Restorated image without denoising
 eXf = Gf.*Yf;
-ex = real(ifft2(eXf));
+ex = real(idft2(eXf));
 return

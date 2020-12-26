@@ -1,0 +1,14 @@
+function [xn] = idft(Xk)
+% The inverse DFT  is given by
+%                    N
+%      x(n) = (1/N) sum  X(k)*exp(j*2*pi*(k-1)*(n-1)/N), 1 <= n <= N.
+%                   k=1      
+       Xk=Xk(:); %make sure xk is a column vector
+       N = length(Xk);
+       n = 1:1:N; % row vector for n
+       k = 1:1:N; % row vector for k
+       WN = exp(i*2*pi/N); % Twiddle factor (w)
+       nk = (n-1)'*(k-1); % creates a N by N matrix of nk values
+       WNnk = WN .^nk; % DFT matrix
+       Xn = (1/N)*WNnk*Xk;
+ end

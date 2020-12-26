@@ -25,7 +25,7 @@ y = real(idft2(Hf.*If))+sigma*randn(row,column); % circular convolution %randn i
 %% Restoration using generalized Wiener filtering
 gamma = 1;
 alpha = 1;
-ewx = WienerFilter_dft(y,h,sigma,gamma,alpha);
+ewx = WienerFilter_dft(y,h,sigma);
 PSNR = abs([psnr(I,I) psnr(y,I) psnr(ewx,I)]) %peak to noise ratio
 MSE = [immse(I,I) immse(y,I) immse(ewx,I)] %Mean squared error
 subplot(221)

@@ -1,33 +1,17 @@
-function ex = WienerFilter_dft(y,h,sigma,gamma,alpha);
-%
-% ex = wienerFilter(y,h,sigma,gamma,alpha);
-%
-% Generalized Wiener filter using parameter alpha. When
-% alpha = 1, it is the Wiener filter. It is also called
-% Regularized inverse filter.
-%
-% Reference: Richb's paper
-% Created: Tue May 4 16:24:06 CDT 1999, Huipin Zhang
-
-N = size(y,1);
+function RestoredImage = WienerFilter_fft(y,h,sigma);
+% RestoredImage = WienerFilter_fft(y,h,sigma);
+% y: Degraded image (with blur and noise)
+% h: Degrade kernel
+% sigma: standard deviation of noise
+R = size(y,1); %get number of rows
+C = size(y,2); %get number of columns
 Yf = dft2(y);
-h=[h zeros(size(h,2),N-size(h,2));zeros(N-size(h,1),N)]; %Padding h with zeros
-Hf = dft2(h,N,N);
-Pyf = abs(Yf).^2/N^2;
-
-% Gf = conj(Hf).*Pxf./(abs(Hf.^2).*Pxf+sigma^2);
-%
-% Since we don't know Pxf, the following 
-% handle singular case (zero case)
-sHf = Hf.*(abs(Hf)>0)+1/gamma*(abs(Hf)==0);
-iHf = 1./sHf;
-iHf = iHf.*(abs(Hf)*gamma>1)+gamma*abs(sHf).*iHf.*(abs(sHf)*gamma<=1);
-
-Pyf = Pyf.*(Pyf>sigma^2)+sigma^2*(Pyf<=sigma^2);
-Gf = iHf.*(Pyf-sigma^2)./(Pyf);
-
-% max(max(abs(Gf).^2)) % should be equal to gamma^2
-% Restorated image without denoising
+h=[h zeros(size(h,2),C-size(h,2));zeros(R-size(h,1),C)]; %Padding h with zeros
+Hf = dft2(h);
+Syy = abs(Yf).^2/(R*C);
+See=sigma^2;
+Sxx=(Syy-See);
+Gf = conj(Hf)./(abs(Hf.^2)+sigma^2./Sxx);
 eXf = Gf.*Yf;
-ex = real(idft2(eXf));
+RestoredImage = real(idft2(eXf));
 return

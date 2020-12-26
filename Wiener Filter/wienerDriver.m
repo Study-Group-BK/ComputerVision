@@ -17,7 +17,7 @@ imshow(x,gray(256))
 % h is the blurring filter, and sigma is the noise std
 h = ones(4,4)/16;
 %h=magic(4)/sum(magic(4));
-sigma = 5;
+sigma = 20;
 
 Xf = fft2(x);
 Hf = fft2(h,N,N);

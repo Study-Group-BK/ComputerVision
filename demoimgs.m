@@ -1,6 +1,6 @@
 function varargout=demoimgs
 %This code find the location that MATLAB stores sample images
-    pth = fileparts(which('cameraman.tif'));
+    pth = fileparts(which('fft2.m'));
     D = dir(pth);
     C = {'.tif';'.jp';'.png';'.bmp'};
     idx = false(size(D));

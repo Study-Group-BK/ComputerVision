@@ -19,12 +19,19 @@ h = ones(4,4)/16;
 sigma = 20;
 
 Xf = fft2(I);
-Hf = fft2(h,row,column);
-y = real(ifft2(Hf.*Xf))+sigma*randn(row,column); % circular convolution %randn is normally distributed
+Hf = fft2(h,N,N);
+y = real(ifft2(Hf.*Xf))+sigma*randn(N,N); % circular convolution %randn is normally distributed
 %y = filter2(h,x)+sigma*randn(N,N);	  % linear convolution
+
 
 figure(3)
 imshow(y,gray(256))
+
+% %% restoration using generalized inverse filtering
+% gamma = 2;
+% eix = inverseFilter(y,h,gamma);
+% figure(3)
+% imshow(eix)
 
 %% restoration using generalized Wiener filtering
 gamma = 1;

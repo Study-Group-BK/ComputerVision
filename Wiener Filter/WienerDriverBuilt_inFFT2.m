@@ -29,7 +29,7 @@ y = real(ifft2(Hf.*Xf))+sigma*randn(row,column); % circular convolution %randn i
 %% Restoration using generalized Wiener filtering
 gamma = 1;
 alpha = 1;
-ewx = wienerFilter(y,h,sigma,gamma,alpha);
+ewx = WienerFilter_fft(y,h,sigma,gamma,alpha);
 %PSNR = [psnr(y,x) psnr(eix,x) psnr(ewx,x)]
 PSNR = abs([psnr(I,I) psnr(y,I) psnr(ewx,I)])
 MSE = [immse(I,I) immse(y,I) immse(ewx,I)]

@@ -1,4 +1,4 @@
-function ex = WienerFilter_dft(y,h,sigma,gamma,alpha);
+function ex = WienerFilter_fft(y,h,sigma,gamma,alpha);
 %
 % ex = wienerFilter(y,h,sigma,gamma,alpha);
 %

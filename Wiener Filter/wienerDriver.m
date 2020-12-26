@@ -3,8 +3,6 @@ clear all
 close all
 clc
 
-tic
-
 %% Input and display the binary image
 I0 = imread('lenna.tif');
 row = size(I0,1);
@@ -27,8 +25,7 @@ y = real(idft2(Hf.*Xf))+sigma*randn(row,column); % circular convolution %randn i
 %% Restoration using generalized Wiener filtering
 gamma = 1;
 alpha = 1;
-ewx = wienerFilter(y,h,sigma,gamma,alpha);
-%PSNR = [psnr(y,x) psnr(eix,x) psnr(ewx,x)]
+ewx = WienerFilter_dft(y,h,sigma,gamma,alpha);
 PSNR = abs([psnr(I,I) psnr(y,I) psnr(ewx,I)])
 MSE = [immse(I,I) immse(y,I) immse(ewx,I)]
 subplot(221)
@@ -39,7 +36,4 @@ subplot(223)
 imshow(y,gray(256))
 subplot(224)
 imshow(ewx,gray(256))
-
-T=toc
-
 return

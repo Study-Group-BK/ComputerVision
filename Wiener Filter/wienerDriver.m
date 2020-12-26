@@ -1,7 +1,8 @@
-clear;clf;
-
+%% Clear
+clear all
+close all
+clc
 %% Input and display the binary image
-
 I = imread('lenna.tif');
 row = size(I,1);
 column=size(I,2);
@@ -17,16 +18,17 @@ imshow(I,gray(256))
 h = ones(4,4)/16;
 %h=magic(4)/sum(magic(4));
 sigma = 20;
+Xf = dft2(I);
+h=[h zeros(size(h,2),column-size(h,2));zeros(row-size(h,1),column)];
+Hf = dft2(h);
 
-Xf = fft2(I);
-Hf = fft2(h,row,column);
-y = real(ifft2(Hf.*Xf))+sigma*randn(row,column); % circular convolution %randn is normally distributed
+y = real(idft2(Hf.*Xf))+sigma*randn(row,column); % circular convolution %randn is normally distributed
 %y = filter2(h,x)+sigma*randn(N,N);	  % linear convolution
 
 figure(3)
 imshow(y,gray(256))
 
-%% restoration using generalized Wiener filtering
+%% Restoration using generalized Wiener filtering
 gamma = 1;
 alpha = 1;
 ewx = wienerFilter(y,h,sigma,gamma,alpha);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,8 @@ using Emgu.CV.Structure;
 
 namespace WindowsFormsApp1
 {
-    float M = Mat(3, 3, CV_U8C1, 1 / 9);
-    cout << M<< endl;
-       public partial class Form1 : Form
+  
+    public partial class Form1 : Form
     {
         private Image<Gray, byte> grayimg;
         private Image<Bgr, byte> img = null;

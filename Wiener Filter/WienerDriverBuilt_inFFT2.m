@@ -6,9 +6,10 @@ clc
 tic
 
 %% Input and display the binary image
-I0 = imread('lenna.tif');
+I0 = imread('onion.png');
 row = size(I0,1);
 column=size(I0,2);
+I0=imresize(I0,[max(row,column) max(row,column)])
 I=rgb2gray(I0);
 I=double(I);
 
@@ -17,11 +18,10 @@ I=double(I);
 h = ones(4,4)/16;
 
 sigma = 20;
-Xf = dft2(I);
-h=[h zeros(size(h,2),column-size(h,2));zeros(row-size(h,1),column)];
-Hf = dft2(h);
+Xf = fft2(I);
+Hf = fft2(h,row,column);
 
-y = real(idft2(Hf.*Xf))+sigma*randn(row,column); % circular convolution %randn is normally distributed
+y = real(ifft2(Hf.*Xf))+sigma*randn(row,column); % circular convolution %randn is normally distributed
 %y = filter2(h,x)+sigma*randn(N,N);	  % linear convolution
 
 %% Restoration using generalized Wiener filtering

@@ -14,9 +14,9 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-           Mat M = new Mat(3, 3,DepthType.Cv8U, 1);
-            M.SetTo(new MCvScalar(1 / 9));
-                Console.WriteLine(M.GetDataPointer());
+            Mat M = new Mat(3, 3,DepthType.Cv8U, 1);
+            M.SetTo(new MCvScalar(1));
+            Console.Write(M.GetData(0,0));
             Console.ReadLine();
         }
     }

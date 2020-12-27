@@ -1,4 +1,4 @@
-function RestoredImage = WienerFilter_fft(y,h,sigma);
+function RestoredImage = WienerFilter_dft(y,h,sigma);
 % RestoredImage = WienerFilter_fft(y,h,sigma);
 % y: Degraded image (with blur and noise)
 % h: Degrade kernel

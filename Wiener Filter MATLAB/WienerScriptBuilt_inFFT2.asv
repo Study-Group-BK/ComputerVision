@@ -4,7 +4,7 @@ close all
 clc
 
 %% Input and display the binary image
-I0 = imread('onion.png');
+I0 = imread('lenna.tif');
 row = size(I0,1);
 column=size(I0,2);
 I=rgb2gray(I0);
@@ -57,29 +57,5 @@ title('Noise Image sigma=10')
 
 subplot(242)
 imshow(y2,gray(256))
-title('Noise Image sigma=20')
-
-subplot(243)
-imshow(y3,gray(256))
-title('Noise Image sigma=30')
-
-subplot(244)
-imshow(y4,gray(256))
-title('Noise Image sigma=40')
-
-subplot(245)
-imshow(ewx1,gray(256))
-title('Restored Image sigma=10')
-
-subplot(246)
-imshow(ewx2,gray(256))
-title('Restored Image sigma=20')
-
-subplot(247)
-imshow(ewx3,gray(256))
-title('Restored Image sigma=30')
-
-subplot(248)
-imshow(ewx4,gray(256))
-title('Restored Image sigma=40')
+title('Noise Image sigma=10')
 return

@@ -19,7 +19,7 @@ If = dft2(I);
 h=[h zeros(size(h,2),column-size(h,2));zeros(row-size(h,1),column)];
 Hf = dft2(h);
 
-y = real(idft2(Hf.*If))+sigma*randn(row,column); % circular convolution %randn is normally distributed
+y = real(ikft2(Hf.*If))+sigma*randn(row,column); % circular convolution %randn is normally distributed
 %% Restoration using generalized Wiener filtering
 ewx = WienerFilter_dft(y,h,sigma);
 PSNR = abs([psnr(I,I) psnr(y,I) psnr(ewx,I)]) %peak to noise ratio

@@ -1,0 +1,5 @@
+clear
+clc
+A=magic(512);
+K=kft2(A);
+F=fft2(A)
